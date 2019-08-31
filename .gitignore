@@ -107,3 +107,7 @@ typings/
 
 ### Typescript ###
 dist/
+
+### Google sheet tokens ###
+credentials.json
+token.json

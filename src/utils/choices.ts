@@ -1,5 +1,6 @@
 import { readFilePromise } from './file';
 import { ChoiceType } from '../models/choice';
+import { getProducers } from './sheet';
 
 export const getChoices = async (type: ChoiceType) => {
   if (type === ChoiceType.grow) {
@@ -14,6 +15,4 @@ const getChoicesFromJSON = async (type: ChoiceType) => {
   return type === ChoiceType.unit ? value.unit : value.new;
 };
 
-const getChoicesFromSheet = async () => {
-
-};
+const getChoicesFromSheet = async () => await getProducers();
