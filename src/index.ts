@@ -1,7 +1,7 @@
 import * as express from 'express';
 import * as mongoose from 'mongoose';
 import * as dotenv from 'dotenv';
-import routes from './routes';
+import * as routes from './routes';
 
 dotenv.config();
 
@@ -12,7 +12,9 @@ app.get('/', (req: express.Request, res: express.Response) => {
   res.send('Hello world!');
 });
 
-app.use('/api', routes);
+app.use('/api', routes.MainRouter);
+app.use('/api/vote', routes.VoteRouter);
+app.use('/api/choices', routes.ChoiceRouter);
 
 require('mongoose').Promise = global.Promise;
 
