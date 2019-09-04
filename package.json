@@ -6,7 +6,7 @@
   "scripts": {
     "start": "tsc && node dist",
     "lint": "tslint -p .",
-    "test": "mocha --require ts-node/register 'test/**/*.test.ts'"
+    "test": "mocha --exit --require ts-node/register 'test/**/*.test.ts'"
   },
   "keywords": [],
   "author": "",
