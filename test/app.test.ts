@@ -1,14 +1,13 @@
-import { expect } from 'chai';
 import * as request from 'supertest';
+
 import index from '../src/index';
 
-describe('Route test', () => {
-  const req = request(index);
-
-  it('GET /', () => {
-    return req
+describe('root route test', () => {
+  it('GET /', (done) => {
+    request(index)
       .get('/')
       .expect(200)
-      .expect('Hello world!');
+      .expect('Hello world!')
+      .end(done);
   });
 });
