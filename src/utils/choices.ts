@@ -1,6 +1,9 @@
 import { readFilePromise } from './file';
-import { ChoiceType } from '../models/choice';
 import { getProducers } from './sheet';
+
+export enum ChoiceType {
+  new, unit, grow,
+}
 
 export const getChoices = async (type: ChoiceType) => {
   if (type === ChoiceType.grow) {

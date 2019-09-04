@@ -1,7 +1,6 @@
 import { Request, Response } from 'express';
 
-import { getChoices } from '../utils/choices';
-import { ChoiceType } from '../models/choice';
+import { getChoices, ChoiceType } from '../utils/choices';
 
 export const getNewChoices = async (req: Request, res: Response) => {
   res.json(await getChoices(ChoiceType.new));
