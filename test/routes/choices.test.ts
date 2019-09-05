@@ -11,7 +11,7 @@ describe('choices route test', () => {
   const growChoices = ['만두스테이크', '서로', '윱찌', '컴프즈P', '희몽이', '골더', '프시p', '워라', '물거품'];
 
   describe('Normal cases', () => {
-    it('GET /new', (done) => {
+    it('GET /new', () => {
       request(index)
         .get('/api/choices/new')
         .expect(200)
@@ -20,11 +20,10 @@ describe('choices route test', () => {
 
           expect(body).to.has.length(3);
           expect(body).to.have.members(newChoices);
-          done();
         });
     });
 
-    it('GET /unit', (done) => {
+    it('GET /unit', () => {
       request(index)
         .get('/api/choices/unit')
         .expect(200)
@@ -33,11 +32,10 @@ describe('choices route test', () => {
 
           expect(body).to.has.length(3);
           expect(body).to.have.members(unitChoices);
-          done();
         });
     });
 
-    it('GET /grow', (done) => {
+    it('GET /grow', () => {
       request(index)
         .get('/api/choices/grow')
         .expect(200)
@@ -46,7 +44,6 @@ describe('choices route test', () => {
 
           expect(body).to.has.length(133);
           expect(body).to.contains.members(growChoices);
-          done();
         });
     });
   });

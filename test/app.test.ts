@@ -3,11 +3,10 @@ import * as request from 'supertest';
 import index from '../src/index';
 
 describe('root route test', () => {
-  it('GET /', (done) => {
+  it('GET /', () => {
     request(index)
       .get('/')
       .expect(200)
-      .expect('Hello world!')
-      .end(done);
+      .expect('Hello world!');
   });
 });
