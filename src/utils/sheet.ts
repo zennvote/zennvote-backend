@@ -10,7 +10,7 @@ const getValues = (spreadsheetId: string, range: string) => {
       if (err) {
         reject(err);
       }
-      resolve(value);
+      resolve(value.data.values);
     });
   });
 };
@@ -18,7 +18,7 @@ const getValues = (spreadsheetId: string, range: string) => {
 export const getProducers = async () => {
   const sheetId = '13H3y7Q3wW3_mUE9JRI5nl7yMni9PZT3HvKj1j5yDsEY';
   const range = '1.노래자랑P DB!B3:B';
-  const { data: { values } } = await getValues(sheetId, range);
+  const values = await getValues(sheetId, range);
 
   return values.map((value: any[]) => value[0]);
 };
