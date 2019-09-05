@@ -12,10 +12,12 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@types/rewire": "^2.5.28",
     "dotenv": "^8.1.0",
     "express": "^4.17.1",
     "googleapis": "^39.2.0",
-    "mongoose": "^5.6.10"
+    "mongoose": "^5.6.10",
+    "rewire": "^4.0.1"
   },
   "devDependencies": {
     "@types/chai": "^4.2.0",
