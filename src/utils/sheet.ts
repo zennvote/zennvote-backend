@@ -1,18 +1,23 @@
-import { google } from 'googleapis';
+import { google, sheets_v4 } from 'googleapis';
 
 import { authorize } from './sheet.auth';
+import { isUndefined } from 'util';
 
-const getValues = (spreadsheetId: string, range: string) => {
-  return new Promise<any>(async (resolve, reject) => {
-    const auth = await authorize();
-    const sheets = google.sheets({ auth, version: 'v4' });
-    sheets.spreadsheets.values.get({ spreadsheetId, range }, (err: Error, value: any) => {
-      if (err) {
-        reject(err);
-      }
-      resolve(value.data.values);
-    });
-  });
+const getSheet = () => new Promise<sheets_v4.Sheets>(async (resolve) => {
+  const auth = await authorize();
+  const sheet = google.sheets({ auth, version: 'v4' });
+  resolve(sheet);
+});
+
+const getValues = async (spreadsheetId: string, range: string) => {
+  const sheets = await getSheet();
+  const response = await sheets.spreadsheets.values.get({ spreadsheetId, range });
+  const result = response.data.values;
+
+  if (isUndefined(result)) {
+    return [[]];
+  }
+  return result;
 };
 
 export const getProducers = async () => {
