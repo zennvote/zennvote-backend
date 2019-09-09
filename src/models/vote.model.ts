@@ -7,38 +7,38 @@ export interface Vote extends mongoose.Document {
 
 export interface VoteData extends mongoose.Document{
   problem: number[];
-  pitch: string[];
-  voice: string[];
-  funny: string[];
-  content: string[];
-  original: string[];
-  sleep: string;
-  unit: string;
-  new: string;
-  grow: string;
-  master: string[];
+  pitch: string[] | undefined;
+  voice: string[] | undefined;
+  funny: string[] | undefined;
+  content: string[] | undefined;
+  original: string[] | undefined;
+  sleep: string | undefined;
+  unit: string | undefined;
+  new: string | undefined;
+  grow: string | undefined;
+  master: string[] | undefined;
   custom: {
     episode: string;
     content: string;
-  }[];
+  }[] | undefined;
   message: {
     name: string;
     content: string;
-  }[];
+  }[] | undefined;
 }
 
 const voteDataSchema = new mongoose.Schema({
-  problem: [Number],
-  pitch: { type: [String] },
-  voice: { type: [String] },
-  funny: { type: [String] },
-  content: { type: [String] },
-  original: { type: [String] },
-  sleep: { type: String },
-  unit: { type: String },
-  new: { type: String },
-  grow: { type: String },
-  master: { type: [String] },
+  problem: { type: [Number], required: true },
+  pitch: [String],
+  voice: [String],
+  funny: [String],
+  content: [String],
+  original: [String],
+  sleep: String,
+  unit: String,
+  new: String,
+  grow: String,
+  master: [String],
   custom: [new mongoose.Schema({
     episode: { type: String, required: true },
     content: { type: String, required: true },
