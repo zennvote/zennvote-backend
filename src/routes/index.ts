@@ -4,3 +4,4 @@ import * as express from 'express';
 export const MainRouter = express.Router();
 export { route as VoteRouter } from './vote';
 export { route as ChoiceRouter } from './choices';
+export { route as AuthRouter } from './auth';
