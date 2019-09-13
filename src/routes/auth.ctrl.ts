@@ -7,6 +7,10 @@ export const login = async (req: Request, res: Response) => {
   const { email, password } = req.body;
   const result = await vote.getVote({ email });
 
+  if (session.email) {
+    res.status(403).json({ message: 'already authed '});
+    return;
+  }
   if (result === null) {
     res.status(404).json({ message: 'user not found' });
     return;
