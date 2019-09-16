@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 
 import * as vote from '../models/vote';
+import { encryptPassword } from '../utils/crypt';
 
 export const login = async (req: Request, res: Response) => {
   const session = req.session as Express.Session;
@@ -15,7 +16,9 @@ export const login = async (req: Request, res: Response) => {
     res.status(404).json({ message: 'user not found' });
     return;
   }
-  if (result.password !== password) {
+  const { salt } = result;
+  const hashPassword = encryptPassword(password, salt);
+  if (result.password !== hashPassword) {
     res.status(401).json({ message: 'wrong password' });
     return;
   }

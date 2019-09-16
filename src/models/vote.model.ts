@@ -4,6 +4,7 @@ export interface Vote extends mongoose.Document {
   data: VoteData;
   email: string;
   password: string;
+  salt: string;
 }
 
 export interface VoteData extends mongoose.Document{
@@ -54,6 +55,7 @@ const voteSchema = new mongoose.Schema({
   data: voteDataSchema,
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true },
+  salt: {type: String, required: true },
 });
 
 // tslint:disable-next-line: variable-name
