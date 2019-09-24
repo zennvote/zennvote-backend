@@ -9,3 +9,4 @@ export { route as ChoiceRouter } from './choices';
 export { route as AuthRouter } from './auth';
 
 MainRouter.get('/episode/:episode/:index', ctrl.getEpisode);
+MainRouter.get('/quiz', ctrl.getQuiz);

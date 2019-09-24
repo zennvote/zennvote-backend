@@ -42,7 +42,7 @@ describe('choices route test', () => {
         .end((err, res) => {
           const { body } = res;
 
-          expect(body).to.has.length(133);
+          expect(body).to.has.length(134);
           expect(body).to.contains.members(growChoices);
         });
     });
