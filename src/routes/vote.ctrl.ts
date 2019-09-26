@@ -5,7 +5,7 @@ import { getSalt, encryptPassword } from '../utils/crypt';
 
 export const postVote = async (req: Request, res: Response) => {
   if (await getVote({ email: req.body.email }) !== null) {
-    res.status(403).json({ message: 'email already exist' });
+    res.status(400).json({ message: 'email already exist' });
     return;
   }
   const vote: Vote = req.body;
