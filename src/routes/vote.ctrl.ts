@@ -3,9 +3,9 @@ import { Vote, VoteData } from '../models/vote.model';
 import { getVote, createVote, updateVote } from '../models/vote';
 import { getSalt, encryptPassword } from '../utils/crypt';
 
-export const postVote = (req: Request, res: Response) => {
-  if (getVote({ email: req.body.email }) !== null) {
-    res.status(403).json({ message: 'email already exist' });
+export const postVote = async (req: Request, res: Response) => {
+  if (await getVote({ email: req.body.email }) !== null) {
+    res.status(400).json({ message: 'email already exist' });
     return;
   }
   const vote: Vote = req.body;
