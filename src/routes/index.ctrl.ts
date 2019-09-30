@@ -4,7 +4,7 @@ import { getEpisodeData } from '../utils/sheet';
 import { getQuizzes } from '../utils/quiz';
 
 export const getEpisode = async (req: Request, res: Response) => {
-  const { episode, index } = req.params;
+  const { episode, index } = req.query;
   res.json(await getEpisodeData(Number(episode), Number(index)));
 };
 
