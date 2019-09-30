@@ -8,5 +8,6 @@ export { route as VoteRouter } from './vote';
 export { route as ChoiceRouter } from './choices';
 export { route as AuthRouter } from './auth';
 
-MainRouter.get('/episode/:episode/:index', ctrl.getEpisode);
+MainRouter.get('/episode', ctrl.getEpisode);
 MainRouter.get('/quiz', ctrl.getQuiz);
+MainRouter.get('/quiz/length', ctrl.getQuizLength);

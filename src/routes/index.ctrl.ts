@@ -9,5 +9,12 @@ export const getEpisode = async (req: Request, res: Response) => {
 };
 
 export const getQuiz = async (req: Request, res: Response) => {
-  res.json(await getQuizzes());
+  const { index } = req.query;
+  const quizzes = await getQuizzes();
+  res.json(quizzes[index]);
 };
+
+export const getQuizLength = async (req: Request, res: Response) => {
+  const { length } = await getQuizzes();
+  res.json(length);
+}
