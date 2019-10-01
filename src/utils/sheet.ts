@@ -41,10 +41,19 @@ const getSheet = async (spreadsheetId: string, range: string) => {
   return sheet;
 };
 
-const getCell = (sheet: Sheet) => {
-  const grid = (sheet.data as GridData[])[0];
-  const row = (grid.rowData as RowData[])[0];
-  const cell = (row.values as CellData[])[0];
+const getCell = ({ data }: Sheet) => {
+  if (isUndefined(data)) {
+    return undefined;
+  }
+  const [{ rowData }] = data as GridData[];
+  if (isUndefined(rowData)) {
+    return undefined;
+  }
+  const [{ values }] = rowData as RowData[];
+  if (isUndefined(values)) {
+    return undefined;
+  }
+  const [cell] = values as CellData[];
   return cell;
 };
 
@@ -69,11 +78,20 @@ export const getProducers = async () => {
 
 export const getEpisodeData = async (episode: number, number: number) => {
   const sheetId = '1OTsbp25-2rpwf2nUY4JDMknDfEgw5ybrkvFyvDEdC38';
-  const range = `시즌 8!${String.fromCharCode(65 + episode - 70)}${number + 1}`;
+  const episodeChar = String.fromCharCode(65 + episode - 70);
+  const range = `시즌 8!${episodeChar}${number + 1}`;
   const sheet = await getSheet(sheetId, range);
   const cell = getCell(sheet);
+  if (isUndefined(cell)) {
+    return undefined;
+  }
   const red = getColor(cell).red as number;
-  const value = (getValue(cell).stringValue as string).slice(number > 9 ? 4 : 3).split(' : ');
+  const rawValue = getValue(cell).stringValue as string;
+  if (isUndefined(rawValue)) {
+    return undefined;
+  }
+
+  const value = rawValue.slice(number > 9 ? 4 : 3).split(' : ');
   if (value[0].startsWith('[데뷔] ')) {
     value[0] = value[0].slice(5);
   }
