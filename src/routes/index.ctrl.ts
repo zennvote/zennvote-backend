@@ -13,7 +13,7 @@ export const getEpisode = async (req: Request, res: Response) => {
     return;
   }
 
-  res.json(await getEpisodeData(Number(episode), Number(index)));
+  res.json({ ...episodeData, episode, index });
 };
 
 export const getQuiz = async (req: Request, res: Response) => {
