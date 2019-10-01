@@ -9,7 +9,7 @@ export const getEpisode = async (req: Request, res: Response) => {
   const episodeData = await getEpisodeData(Number(episode), Number(index));
 
   if (isUndefined(episodeData)) {
-    res.status(404).json({ message: 'no episode' });
+    res.status(404).json({ episode, index, message: 'no episode' });
     return;
   }
 
