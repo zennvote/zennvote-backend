@@ -68,6 +68,24 @@ const getColor = (cell: CellData) => {
   return color;
 };
 
+export const getEpisodesWithProducer = async (producer: string) => {
+  const producers = await getProducers();
+  const index = producers.findIndex((value) => value === producer);
+
+  const sheetId = '13H3y7Q3wW3_mUE9JRI5nl7yMni9PZT3HvKj1j5yDsEY'
+  const range = `1.노래자랑P DB!${index + 3}:${index + 3}`;
+  const values = await getValues(sheetId, range);
+
+  const result = values[0].slice(2).map((raw: string) => {
+    const [episodeData, ...song] = raw.split(' ');
+    const [episode, index] = episodeData.split('-').map(x => parseInt(x));
+
+    return { episode, index, song: song.join(' ') };
+  });
+
+  return result;
+}
+
 export const getProducers = async () => {
   const sheetId = '13H3y7Q3wW3_mUE9JRI5nl7yMni9PZT3HvKj1j5yDsEY';
   const range = '1.노래자랑P DB!B3:B';
@@ -77,6 +95,7 @@ export const getProducers = async () => {
 };
 
 export const getEpisodeData = async (episode: number, number: number) => {
+  console.log(episode, number);
   const sheetId = '1OTsbp25-2rpwf2nUY4JDMknDfEgw5ybrkvFyvDEdC38';
   const episodeChar = String.fromCharCode(65 + episode - 70);
   const range = `시즌 8!${episodeChar}${number + 1}`;
