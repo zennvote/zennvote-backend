@@ -13,7 +13,11 @@ export const getEpisode = async (req: Request, res: Response) => {
     return;
   }
 
-  res.json({ ...episodeData, episode, index });
+  res.json({
+    ...episodeData,
+    episode: Number(episode),
+    index: Number(index),
+  });
 };
 
 export const getQuiz = async (req: Request, res: Response) => {
