@@ -27,6 +27,7 @@ app.use('/api', routes.MainRouter);
 app.use('/api/vote', routes.VoteRouter);
 app.use('/api/choices', routes.ChoiceRouter);
 app.use('/api/auth', routes.AuthRouter);
+app.use('/api/episode', routes.EpisodeRouter);
 
 mongoose.connect(process.env.MONGO_URI as string, { useNewUrlParser: true })
   .then(() => console.log('Server connected to mongodb'))

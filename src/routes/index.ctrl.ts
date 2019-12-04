@@ -4,18 +4,6 @@ import { getEpisodeData } from '../utils/sheet';
 import { getQuizzes } from '../utils/quiz';
 import { isUndefined } from 'util';
 
-export const getEpisode = async (req: Request, res: Response) => {
-  const { episode, index } = req.query;
-  const episodeData = await getEpisodeData(Number(episode), Number(index));
-
-  if (isUndefined(episodeData)) {
-    res.status(404).json({ episode, index, message: 'no episode' });
-    return;
-  }
-
-  res.json({ ...episodeData, episode, index });
-};
-
 export const getQuiz = async (req: Request, res: Response) => {
   const { index } = req.query;
   const quizzes = await getQuizzes();
