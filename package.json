@@ -6,6 +6,7 @@
   "scripts": {
     "start": "ts-node src",
     "dev": "nodemon --watch src --delay 1 --exec ts-node src/index.ts",
+    "prod": "tsc && pm2 start dist",
     "lint": "tslint -p .",
     "test": "mocha --exit --bail --require ts-node/register 'test/**/*.test.ts'"
   },
