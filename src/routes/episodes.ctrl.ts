@@ -24,5 +24,5 @@ export const getEpisodeWithProducer = async (req: Request, res: Response) => {
     return;
   }
 
-  res.json({ producer, episodes: episodeData });
+  res.json({ producer, episodes: episodeData.reverse() });
 };

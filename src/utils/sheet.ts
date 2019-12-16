@@ -95,22 +95,23 @@ export const getProducers = async () => {
 };
 
 export const getEpisodeData = async (episode: number, number: number) => {
-  console.log(episode, number);
+  const season = Math.floor((episode - 1) / 10) + 1;
   const sheetId = '1OTsbp25-2rpwf2nUY4JDMknDfEgw5ybrkvFyvDEdC38';
-  const episodeChar = String.fromCharCode(65 + episode - 70);
-  const range = `시즌 8!${episodeChar}${number + 1}`;
+  const episodeChar = String.fromCharCode(65 + episode - (season - 1) * 10);
+  const range = `시즌 ${season}!${episodeChar}${number + 1}`;
   const sheet = await getSheet(sheetId, range);
   const cell = getCell(sheet);
   if (isUndefined(cell)) {
     return undefined;
   }
+  console.log(`${season} ${episodeChar}(${episode} - ${(season - 1) * 10}) ${number+1}`);
   const red = getColor(cell).red as number;
   const rawValue = getValue(cell).stringValue as string;
   if (isUndefined(rawValue)) {
     return undefined;
   }
 
-  const value = rawValue.slice(number > 9 ? 4 : 3).split(' : ');
+  const value = rawValue.slice(number > 9 ? 4 : 3).split(season === 1 ? ' - ' : ' : ');
   if (value[0].startsWith('[데뷔] ')) {
     value[0] = value[0].slice(5);
   }

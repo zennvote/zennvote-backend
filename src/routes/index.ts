@@ -11,3 +11,4 @@ export { route as EpisodeRouter } from './episodes';
 
 MainRouter.get('/quiz', ctrl.getQuiz);
 MainRouter.get('/quiz/length', ctrl.getQuizLength);
+MainRouter.get('/producers', ctrl.getProducerNames);
