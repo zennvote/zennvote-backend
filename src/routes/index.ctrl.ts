@@ -15,6 +15,6 @@ export const getQuizLength = async (req: Request, res: Response) => {
 };
 
 export const getProducerNames = async (req: Request, res: Response) => {
-  const result = await getProducers();
+  const result = (await getProducers()).sort();
   res.json(result);
 }

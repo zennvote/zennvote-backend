@@ -11,5 +11,5 @@ export const getUnitChoices = async (req: Request, res: Response) => {
 };
 
 export const getGrowChoices = async (req: Request, res: Response) => {
-  res.json(await getChoices(ChoiceType.grow));
+  res.json((await getChoices(ChoiceType.grow)).sort());
 };
